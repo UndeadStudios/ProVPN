@@ -48,6 +48,14 @@ public class PlayerList {
     public static boolean contains(ListType type, Object object) {
         List<String> list = getListByType(type);
         if(list == null) return false;
+        if(type == ListType.BLACKLIST) {
+            for (String info : list) {
+                if(!info.endsWith("*")) continue;
+                info = info.replace("*", "");
+                if(String.valueOf(object).startsWith(info)) return true;
+            }
+        }
+
         return contains(list, object);
     }
 
