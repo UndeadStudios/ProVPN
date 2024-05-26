@@ -21,9 +21,12 @@ public class ConnectionBuilder {
 
     public ConnectionBuilder connect() {
         try {
+
             String rawUrl = url;
             URL url = new URL(rawUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(6000);
+            connection.setReadTimeout(6000);
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
             if(parameters.length > 0) {
@@ -43,6 +46,7 @@ public class ConnectionBuilder {
             StringBuilder builder = new StringBuilder("\\");
             while (scanner.hasNextLine()) builder.append(" ").append(scanner.next());
             response = builder.toString().replace("\\ ", "");
+
         } catch (Exception exception) {
             Logger.warning("§cFailed to built connection to website! [" + exception.getMessage() + "]");
         }
