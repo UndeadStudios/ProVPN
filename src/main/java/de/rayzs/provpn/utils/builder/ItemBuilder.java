@@ -35,7 +35,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setGlow() {
-        this.itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+        this.itemMeta.addEnchant(Enchantment.UNBREAKING, 1, true);
         this.itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         return this;
     }
